@@ -29,9 +29,6 @@ app.get('/contactlist', function(req, res){
 // 接收POST请求
 app.post('/contactlist', function(req, res){
 	console.log(req.body);
-	// db.contactlist.insert(req.body, function(err, docs){
-	// 	res.json(docs);
-	// });
 	var newcontact = new Contact(req.body);
 	newcontact.save(function(err, contact) {
 		if (err) {
