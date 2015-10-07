@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp', []);
-myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
+myApp.controller('AppCtrl', function($scope, $http) {
 	// 数据模板
 	var refresh = function(){
 		$http.get('/contactlist').success(function(response){
@@ -10,7 +10,8 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
 	refresh();
 	$scope.addContact = function(){
 		$http.post('/contactlist',$scope.contact).success(function(response){
-			refresh();
+			$scope.contactlist = response;
+			document.forms["contactform"].reset();
 		});
 	};
 	$scope.remove = function(id){
@@ -18,18 +19,21 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
 			refresh();
 		})
 	};
-	$scope.edit = function(id){
-		$http.get('/contactlist/' + id).success(function(response){
-			$scope.contact = response;
-		})
+	$scope.edit = function(contact){
+		$scope.contact = contact;
 	}
 	$scope.update = function(){
 		// console.log($scope.contact)
 		$http.put('/contactlist/' + $scope.contact._id, $scope.contact).success(function(response){
-			refresh();
+			// refresh();
+			if (response.result) {
+				document.forms["contactform"].reset();
+			} else{
+				alert("修改失败");
+			};
 		})
 	}
 	$scope.deselect = function(){
 		$scope.contact = [];
 	}
-}]);
+});

@@ -1,7 +1,6 @@
 var express = require('express');
 var bodyparser = require('body-parser');
 var app = express();
-var mongojs = require('mongojs');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/contactlist');
 var db = mongoose.connection;
@@ -21,7 +20,7 @@ app.use(bodyparser.json());
 app.get('/contactlist', function(req, res){
 	Contact.find(function(err, contacts) {
 		if (err) {
-			return console.err(err);
+			return console.error(err);
 		};
 		res.json(contacts);
 	});
@@ -38,7 +37,7 @@ app.post('/contactlist', function(req, res){
 	});
 	Contact.find(function(err, contacts) {
 		if (err) {
-			return console.err(err);
+			return console.error(err);
 		};
 		res.json(contacts);
 	});
@@ -76,14 +75,16 @@ app.put('/contactlist/:id', function(req, res) {
 			email: req.body.email,
 			number: req.body.number
 		}
+		}, {
+			new: true
 		}, function(err, contact){
 			if (err) {
+				res.json({result: false});
 				return console.log(err);
 			};
-			console.log(contact);
-			res.json(contact);
+			res.json({result: true});
 	})
 })
 
 app.listen(2333);
-console.log('Server on port 3000');
+console.log('Server on port 2333');
