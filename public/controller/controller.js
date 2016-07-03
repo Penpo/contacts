@@ -23,7 +23,6 @@ myApp.controller('AppCtrl', function($scope, $http) {
 		$scope.contact = contact;
 	}
 	$scope.update = function(){
-		// console.log($scope.contact)
 		$http.put('/contactlist/' + $scope.contact._id, $scope.contact).success(function(response){
 			// refresh();
 			if (response.result) {

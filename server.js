@@ -1,9 +1,9 @@
-var express = require('express');
-var bodyparser = require('body-parser');
-var app = express();
-var mongoose = require('mongoose');
+const express = require('express');
+const bodyparser = require('body-parser');
+const app = express();
+const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/contactlist');
-var db = mongoose.connection;
+const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {
 	console.log("Database is connected!");
