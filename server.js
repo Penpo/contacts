@@ -34,12 +34,13 @@ app.post('/contactlist', function(req, res){
 			return console.log(err)
 		};
 		console.log(contact);
-	});
-	Contact.find(function(err, contacts) {
-		if (err) {
-			return console.error(err);
-		};
-		res.json(contacts);
+
+		Contact.find(function(err, contacts) {
+			if (err) {
+				return console.error(err);
+			};
+			res.json(contacts);
+		});
 	});
 });
 
