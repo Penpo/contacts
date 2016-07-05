@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Contact List App</title>
+	<meta name="viewport" content="width=device-width, maximum-scale=2, minimum-scale=.5" />
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+</head>
+<body>
+	<form id="contactform">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span12">
+					<h1>Contact List App</h1>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Number</th>
+								<th>Actor</th>
+								<th> </th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input type="text" class="form-control"></td>
+								<td><input type="text" class="form-control"></td>
+								<td><input type="text" class="form-control"></td>
+								<td><button class="btn btn-primary">Add Contact</button></td>
+								<td></td>
+							</tr>
+							<tr v-for="contact in contactlist">
+								<td>{{contact.name}}</td>
+								<td>{{contact.email}}</td>
+								<td>{{contact.number}}</td>
+								<td><button class="btn btn-danger">Remove</button></td>
+								<td><button class="btn btn-warning">Edit</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<h1></h1>
+		</div>
+	</form>
+	<!-- 页面脚本 begin -->
+	<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+	<script src="//cdn.bootcss.com/vue/1.0.26/vue.js"></script>
+	<script src="controller/controller.js"></script>
+	<!-- 页面脚本 end -->
+</body>
+</html>
