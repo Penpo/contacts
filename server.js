@@ -16,6 +16,9 @@ var contactSchema = new mongoose.Schema({
 var Contact = mongoose.model('Contact', contactSchema);
 app.use(express.static(__dirname + '/public'));
 app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+}));
 
 app.get('/contactlist', function(req, res){
 	Contact.find(function(err, contacts) {
