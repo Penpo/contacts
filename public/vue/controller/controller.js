@@ -15,17 +15,18 @@ var myApp = new Vue({
 				myApp.contactlist = data;
 			});
 		},
-		removeContact: function(dom){
+		removeContact: function($index){
 			event.preventDefault();
-			console.log(this.contactlist[dom.$index]._id);
-			console.log(this.contactlist[dom.$index])
+			var self = this;
 			$.ajax({
-				url: '/contactlist/' + this.contactlist[dom.$index]._id,
+				url: '/contactlist/' + this.contactlist[$index]._id,
 				type: 'DELETE',
 				dataType: 'json',
-				data: this.contactlist[dom.$index],
+				data: this.contactlist[$index],
 				success: function(data){
-					console.log(data);
+					if(data.status === 'success'){
+						self.contactlist.splice([$index], 1);
+					}
 				}
 			});
 		},

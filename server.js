@@ -55,7 +55,7 @@ app.delete('/contactlist/:id', function(req, res){
 			return console.log(err);
 		};
 		console.log(contact);
-		res.json(contact);
+		res.json({status: "success", message: ""});
 	})
 })
 

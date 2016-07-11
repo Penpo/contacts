@@ -35,7 +35,7 @@
 								<td>{{contact.name}}</td>
 								<td>{{contact.email}}</td>
 								<td>{{contact.number}}</td>
-								<td><button class="btn btn-danger" v-on:click="removeContact(this)">Remove</button></td>
+								<td><button class="btn btn-danger" v-on:click="removeContact($index)">Remove</button></td>
 								<td><button class="btn btn-warning">Edit</button></td>
 							</tr>
 						</tbody>
