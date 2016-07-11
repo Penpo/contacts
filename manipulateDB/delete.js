@@ -24,16 +24,20 @@ Contact.find(function(err, contacts) {
 	if (err) {
 		return console.error(err);
 	};
-	removeContacts(contacts);
+	deleteContacts(contacts.splice(10));
 });
 function deleteContacts(contacts){
-	if(num <= 0){
+	if(contacts.length <= 0){
+		console.timeEnd('delete contacts');
+		console.log('manually delete data finished');
 		process.exit();
 	}
-	Contact.findByIdAndRemove(contacts.id, function(err, contact){
+	Contact.findByIdAndRemove(contacts[0].id, function(err, contact){
 		if (err) {
 			return console.log(err);
 		};
+		contacts.shift();
+		deleteContacts(contacts);
 	});
+
 }
-console.timeEnd('delete contacts');

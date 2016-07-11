@@ -22,7 +22,8 @@ var Contact = mongoose.model('Contact', contactSchema);
 console.time('add contacts');
 function addContacts(num){
 	if(num <= 0){
-		console.log('manipulate finished');
+		console.timeEnd('add contacts');
+		console.log('manually add data finished');
 		process.exit();
 	}
 	let firstName = (Math.random() * 1e16).toString(36).replace(/\d/g, '');
@@ -42,4 +43,3 @@ function addContacts(num){
 	});
 }
 addContacts(500);
-console.timeEnd('add contacts');
