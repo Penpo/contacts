@@ -34,16 +34,10 @@ app.post('/contactlist', function(req, res){
 	var newcontact = new Contact(req.body);
 	newcontact.save(function(err, contact) {
 		if (err) {
+			res.json({status: 'failed', message: 'can\'t save this contact'});
 			return console.log(err)
 		};
-		console.log(contact);
-
-		Contact.find(function(err, contacts) {
-			if (err) {
-				return console.error(err);
-			};
-			res.json(contacts);
-		});
+		res.json({status: 'success', message: 'complete'});
 	});
 });
 
@@ -55,7 +49,7 @@ app.delete('/contactlist/:id', function(req, res){
 			return console.log(err);
 		};
 		console.log(contact);
-		res.json({status: "success", message: ""});
+		res.json({status: 'success', message: ""});
 	})
 })
 

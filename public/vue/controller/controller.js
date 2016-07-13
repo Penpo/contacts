@@ -11,9 +11,17 @@ var myApp = new Vue({
 	methods: {
 		addContact: function(event){
 			event.preventDefault();
+			var self = this;
 			$.post('/contactlist', {name: this.newContact.name, email: this.newContact.email, number: this.newContact.number}, function(data, textStatus, xhr) {
-				myApp.contactlist = data;
+				if(data.status === 'success'){
+					myApp.contactlist.push({name: self.newContact.name, email: self.newContact.email, number: self.newContact.number});
+					myApp.deselect();
+				}
 			});
+		},
+		deselect: function(event){
+			event ? event.preventDefault() : true;
+			this.newContact = {};
 		},
 		removeContact: function($index){
 			event.preventDefault();
