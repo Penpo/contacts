@@ -15,13 +15,13 @@ mongod
 mongo
 use contactlist
 ```
-##启动
+## 启动
 ```javascript
 node server.js
 ```
-##运行
+## 运行
 打开本地浏览器[http://localhost:2333/](http://localhost:2333/)查看运行效果
 
-##添加 Vue.js 实现方法
+## 添加 Vue.js 实现方法
 
 访问[http://localhost:2333/](http://localhost:2333/vue/index.html)查看 Demo
