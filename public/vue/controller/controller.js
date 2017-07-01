@@ -38,6 +38,30 @@ var myApp = new Vue({
 				}
 			});
 		},
+		editContact: function($index){
+			event.preventDefault();
+			this.newContact = this.contactlist[$index];
+		},
+		update: function(){
+			event.preventDefault();
+			var self = this;
+			$.ajax({
+				url: '/contactlist/' + this.newContact._id,
+				type: 'put',
+				dataType: 'json',
+				data: {name: this.newContact.name, email: this.newContact.email, number: this.newContact.number},
+				success: function(data) {
+					if(data.result){
+						this.newContact = {};
+					} else {
+						alert('网络错误！');
+					}
+				},
+				error: function() {
+					alert('网络错误！');
+				}
+			});
+		},
 	}
 })
 

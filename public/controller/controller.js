@@ -10,8 +10,12 @@ myApp.controller('AppCtrl', function($scope, $http) {
 	refresh();
 	$scope.addContact = function(){
 		$http.post('/contactlist',$scope.contact).success(function(response){
-			$scope.contactlist = response;
-			document.forms["contactform"].reset();
+			if(response.status === 'success'){
+				$scope.contactlist.push($scope.contact);
+				document.forms["contactform"].reset();
+			}else{
+				console.warn(response.message);
+			}
 		});
 	};
 	$scope.remove = function(id){

@@ -29,14 +29,14 @@
 								<td><input type="text" class="form-control" v-model="newContact.email"></td>
 								<td><input type="text" class="form-control" v-model="newContact.number"></td>
 								<td><button class="btn btn-primary" v-on:click="addContact">Add Contact</button></td>
-								<td><button class="btn btn-info" v-on:click="deselect">Clear</button></td>
+								<td><button class="btn btn-info" v-on:click="update">Update</button> <button class="btn btn-info" v-on:click="deselect">Clear</button></td>
 							</tr>
 							<tr v-for="contact in contactlist">
 								<td>{{contact.name}}</td>
 								<td>{{contact.email}}</td>
 								<td>{{contact.number}}</td>
 								<td><button class="btn btn-danger" v-on:click="removeContact($index)">Remove</button></td>
-								<td><button class="btn btn-warning">Edit</button></td>
+								<td><button class="btn btn-warning" v-on:click="editContact($index)">Edit</button></td>
 							</tr>
 						</tbody>
 					</table>
